@@ -1,0 +1,72 @@
+# 依赖与构建产物（必须排除，否则会污染容器内的干净构建）
+node_modules
+.next
+dist
+build
+out
+.rsbuild
+
+# Git 与 IDE / AI 助手
+.git
+.gitignore
+.gitattributes
+.idea
+.vscode
+.local-agent
+# Windsurf / 通用 agent 工作区：本地工具配置，且 .windsurf/skills/* 是
+# 指向 .agents/skills/* 的本地 symlink，Docker tar 不能稳定打包 Windows
+# 端的 symlink（archive/tar: unknown file mode ?rwxr-xr-x）。
+.windsurf
+.agents
+skills-lock.json
+
+# 环境变量与日志
+.env
+.env.*
+*.log
+logs
+app-logs
+
+# 缓存
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+.npm
+.turbo
+.vercel
+node-compile-cache
+*.tsbuildinfo
+
+# 测试覆盖率
+coverage
+.nyc_output
+
+# 文档与 issue 记录（运行时不需要）
+README.md
+agent-local-notes.md
+docs
+issues
+
+# 示例与一次性脚本（不参与构建）
+narrator-ai-demo
+misc_fixes.js
+narrator_*.js
+
+# 压缩包 / 二进制包（不参与构建，且单个文件就能爆 build context）
+# 触发案例 regression coverage: narrator-ai-demo.tar.gz (124 MB) 把 build context 撑到 101 MB，
+# 上传卡了 ~12 分钟。下次再放任何 tarball 都不会撞同样的坑。
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+
+# Docker 自身（避免循环引用）
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# OS 文件
+.DS_Store
+Thumbs.db
+Desktop.ini

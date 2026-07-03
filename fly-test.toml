@@ -1,0 +1,33 @@
+app = "your-frontend-test"
+primary_region = "sin"
+
+[build]
+dockerfile = "Dockerfile"
+
+[env]
+APP_ENV = "PROD"
+HOSTNAME = "0.0.0.0"
+NEXT_TELEMETRY_DISABLED = "1"
+PORT = "5000"
+# Backend orchestrator  cutover: see fly.toml comment.
+NEXT_PUBLIC_BACKEND_ORCHESTRATOR_ON = "1"
+
+[http_service]
+auto_start_machines = true
+auto_stop_machines = "stop"
+force_https = true
+internal_port = 5_000
+# Keep at least one machine always warm to eliminate cold-start
+# latency. With min_machines_running=0 the test machine slept after
+# idle and the next user navigation paid ~7-8s wake-up (regression coverage
+# subsequent update — frontend RSC payloads + concurrent BFF calls all
+# queued on the wake while the page sat blank). Always-on baseline
+# of 1 keeps QA/dev UX consistent; auto_stop still applies to any
+# autoscaled extras the test env rarely needs.
+min_machines_running = 1
+processes = [ "app" ]
+
+[[vm]]
+cpu_kind = "shared"
+cpus = 1
+memory_mb = 512

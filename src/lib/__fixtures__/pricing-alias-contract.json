@@ -1,0 +1,47 @@
+{
+  "_note": "Synthetic pricing v2 alias regression seeds. Each cluster pins one public identity-shaping invariant for src/lib/pricing-alias-contract.test.ts.",
+  "clusters": [
+    {
+      "case_id": "alias-code-primary",
+      "title": "narrator id vs canonical code — confirm page sent narrator 主 ID as template_id, no code",
+      "template": { "id": 303, "code": "xy0178" },
+      "v2_quote": { "code": "xy0178", "final_charge_price": 84, "combo_key": "original_narration_flash", "pricing_rule_version": "v2.3" },
+      "expected_quote_identity": { "code": "xy0178", "template_id": "303" },
+      "expected_catalog_tier": 178,
+      "expected_master_task_identity": { "template_id": 303, "code": "xy0178" }
+    },
+    {
+      "case_id": "quote-code-precedence",
+      "title": "code echoed by quote takes precedence over template.code on master-task body",
+      "template": { "id": 512, "code": "xy0241" },
+      "v2_quote": { "code": "xy0241", "final_charge_price": 126, "combo_key": "original_dialogue_pro", "pricing_rule_version": "v2.3" },
+      "expected_quote_identity": { "code": "xy0241", "template_id": "512" },
+      "expected_catalog_tier": 241,
+      "expected_master_task_identity": { "template_id": 512, "code": "xy0241" }
+    },
+    {
+      "case_id": "v2-budget-source",
+      "title": "template selected must use v2 hard-price, not fall back to deprecated consume-budget",
+      "template": { "id": 77, "code": "xy0066" },
+      "v2_quote": { "code": "xy0066", "final_charge_price": 42, "combo_key": "remake", "pricing_rule_version": "v2.3" },
+      "expected_quote_identity": { "code": "xy0066", "template_id": "77" },
+      "expected_catalog_tier": 66,
+      "expected_master_task_identity": { "template_id": 77, "code": "xy0066" }
+    },
+    {
+      "case_id": "v2-budget-snapshot",
+      "title": "v2 hard-price order must carry a non-empty single-price budget_snapshot",
+      "template": { "id": 901, "code": "xy0333" },
+      "v2_quote": { "code": "xy0333", "final_charge_price": 210, "combo_key": "original_narration_pro", "pricing_rule_version": "v2.3" },
+      "expected_quote_identity": { "code": "xy0333", "template_id": "901" },
+      "expected_catalog_tier": 333,
+      "expected_master_task_identity": { "template_id": 901, "code": "xy0333" }
+    }
+  ],
+  "custom_srt_case": {
+    "title": "custom-SRT orders have no template catalog entry — template_id and code both omitted",
+    "template": { "id": 303, "code": "xy0178" },
+    "v2_quote": { "code": "xy0178", "final_charge_price": 84, "combo_key": "original_narration_flash", "pricing_rule_version": "v2.3" },
+    "expected_master_task_identity": { "template_id": null, "code": null }
+  }
+}

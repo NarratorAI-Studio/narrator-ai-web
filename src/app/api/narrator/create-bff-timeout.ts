@@ -1,0 +1,1 @@
+export const NARRATOR_CREATE_BFF_TIMEOUT_MS = 65_000;

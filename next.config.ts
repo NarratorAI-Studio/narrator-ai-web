@@ -1,0 +1,7 @@
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  // outputFileTracingRoot: path.resolve(__dirname, '../../'),  // Uncomment and add 'import path from "path"' if needed
+};
+
+export default nextConfig;

@@ -1,0 +1,4 @@
+# 防止 Windows 上 git checkout 把 shell 脚本转成 CRLF，
+# 否则 Linux 容器内 bash 解析时会报 "pipefail: invalid option name" 之类的错误。
+*.sh        text eol=lf
+Dockerfile  text eol=lf

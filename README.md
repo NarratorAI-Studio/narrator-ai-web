@@ -2,9 +2,17 @@
 
 [中文](./README_CN.md)
 
-`narrator-ai-web` is a self-hostable Next.js frontend for template-driven commentary-video task creation. It provides the user interface and a thin BFF (Backend-for-Frontend) layer for uploading material, selecting templates, creating tasks, and viewing task progress.
+`narrator-ai-web` is a self-hostable Next.js frontend for NarratorAI, a template-driven workflow that helps users turn movies, short dramas, raw clips, and other long-form video material into commentary videos.
+
+Users upload source videos or import video URLs, choose a commentary template, review the task price, and submit the job. The connected backend can generate commentary scripts, editing instructions, and a condensed commentary video suitable for publishing on short-video platforms.
+
+Each commentary template can carry its own price. Before a task is submitted, the frontend asks the backend for a quote so the user can confirm the charge first.
+
+This project is useful for movie commentary, short-drama commentary, plot recaps, content-studio batch production, and teams that want to package commentary templates as sellable products.
 
 The repository does not include model inference, video generation, wallet, or orchestration services. Those capabilities are expected to run in a compatible backend service that exposes the APIs configured through environment variables.
+
+Companion backend repository: [NarratorAI-Studio/narrator-ai-web-backend](https://github.com/NarratorAI-Studio/narrator-ai-web-backend).
 
 ## Demo
 
@@ -108,6 +116,8 @@ The app listens on <http://localhost:5000> by default.
 ## Running With a Backend
 
 This frontend expects backend endpoints for account, wallet, pricing, metadata, and task orchestration. In local development, run the compatible backend first and point `NARRATOR_PRICING_API_URL` at it. The companion backend repository listens on `8080` by default:
+
+- Backend source: [NarratorAI-Studio/narrator-ai-web-backend](https://github.com/NarratorAI-Studio/narrator-ai-web-backend)
 
 ```bash
 NARRATOR_PRICING_API_URL=http://localhost:8080

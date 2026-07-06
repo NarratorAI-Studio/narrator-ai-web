@@ -2,9 +2,17 @@
 
 [英文](./README.md)
 
-`narrator-ai-web` 是一个可自托管的 Next.js 前端，用于模板化解说视频任务创建。它提供用户界面和一层轻量 BFF（Backend-for-Frontend，前端专用后端）能力，支持上传素材、选择模板、创建任务和查看任务进度。
+`narrator-ai-web` 是 NarratorAI 的可自托管 Next.js 前端，用于模板化视频解说制作。它可以帮助用户自动完成电影、短剧等视频的解说制作。
+
+用户上传原始视频、影视片段、短剧素材或其他长视频素材后，选择一个解说模板，系统会通过连接的后端根据模板生成解说文案、剪辑脚本，并合成一条适合短视频平台发布的精简版解说视频。
+
+每个模板都可以配置自己的价格。用户在提交任务前可以看到本次任务价格，确认后再提交生成。
+
+这个项目适合用于电影解说、短剧解说、剧情混剪、内容工作室批量交付，以及想把解说模板做成可售卖商品的团队。
 
 本仓库不包含模型推理、视频生成、钱包或任务编排服务。这些能力需要由兼容后端服务提供，并通过环境变量接入。
+
+配套后端仓库：[NarratorAI-Studio/narrator-ai-web-backend](https://github.com/NarratorAI-Studio/narrator-ai-web-backend)。
 
 ## 在线演示
 
@@ -108,6 +116,8 @@ pnpm dev
 ## 配合后端运行
 
 本前端依赖后端提供 account、wallet、pricing、metadata 和 task orchestration 等接口。本地开发时，请先启动兼容后端服务，并将 `NARRATOR_PRICING_API_URL` 指向它。配套后端仓库默认监听 `8080`：
+
+- 后端源码：[NarratorAI-Studio/narrator-ai-web-backend](https://github.com/NarratorAI-Studio/narrator-ai-web-backend)
 
 ```bash
 NARRATOR_PRICING_API_URL=http://localhost:8080
